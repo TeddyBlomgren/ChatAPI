@@ -54,5 +54,12 @@ namespace ChatAPI.Controllers
             if (!success) return NotFound();
             return NoContent();
         }
+        [HttpGet("conversation/{userAId}/{userBId}")]
+        public async Task<IActionResult> GetConversation(string userAId, string userBId)
+        {
+            var messages = await _pmManager.GetConversationAsync(userAId, userBId);
+            return Ok(messages);
+        }
+
     }
 }

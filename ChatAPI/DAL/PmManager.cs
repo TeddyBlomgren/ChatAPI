@@ -53,5 +53,15 @@ namespace ChatAPI.DAL
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<List<PM>> GetConversationAsync(string userAId, string userBId)
+        {
+            return await _context.PrivateMessages
+                .Where(m =>
+                    (m.SenderId == userAId && m.ReceiverId == userBId) ||
+                    (m.SenderId == userBId && m.ReceiverId == userAId))
+                .OrderBy(m => m.SentAt)
+                .ToListAsync();
+        }
+
     }
 }
