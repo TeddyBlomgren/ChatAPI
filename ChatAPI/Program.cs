@@ -18,7 +18,7 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDbContext<PmDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("PmDatabase")));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         builder.Services.AddScoped<PmManager>();
 
