@@ -39,27 +39,29 @@ namespace ChatAPI.Controllers
             return Ok(messages);
         }
 
-        [HttpPut("{id}/read")]
-        public async Task<IActionResult> MarkAsRead(int id)
-        {
-            var success = await _pmManager.MarkAsReadAsync(id);
-            if (!success) return NotFound();
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var success = await _pmManager.DeleteAsync(id);
-            if (!success) return NotFound();
-            return NoContent();
-        }
         [HttpGet("conversation/{userAId}/{userBId}")]
         public async Task<IActionResult> GetConversation(string userAId, string userBId)
         {
             var messages = await _pmManager.GetConversationAsync(userAId, userBId);
             return Ok(messages);
         }
+
+        //[HttpPut("{id}/read")]
+        //public async Task<IActionResult> MarkAsRead(int id)
+        //{
+        //    var success = await _pmManager.MarkAsReadAsync(id);
+        //    if (!success) return NotFound();
+        //    return NoContent();
+        //}
+
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var success = await _pmManager.DeleteAsync(id);
+        //    if (!success) return NotFound();
+        //    return NoContent();
+        //}
+
 
     }
 }

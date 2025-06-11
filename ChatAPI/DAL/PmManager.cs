@@ -34,25 +34,6 @@ namespace ChatAPI.DAL
             return message;
         }
 
-        public async Task<bool> MarkAsReadAsync(int id)
-        {
-            var msg = await _context.PrivateMessages.FindAsync(id);
-            if (msg == null) return false;
-
-            msg.IsRead = true;
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> DeleteAsync(int id)
-        {
-            var msg = await _context.PrivateMessages.FindAsync(id);
-            if (msg == null) return false;
-
-            _context.PrivateMessages.Remove(msg);
-            await _context.SaveChangesAsync();
-            return true;
-        }
         public async Task<List<PM>> GetConversationAsync(string userAId, string userBId)
         {
             return await _context.PrivateMessages
@@ -65,3 +46,23 @@ namespace ChatAPI.DAL
 
     }
 }
+
+        //public async Task<bool> MarkAsReadAsync(int id)
+        //{
+        //    var msg = await _context.PrivateMessages.FindAsync(id);
+        //    if (msg == null) return false;
+
+        //    msg.IsRead = true;
+        //    await _context.SaveChangesAsync();
+        //    return true;
+        //}
+
+        //public async Task<bool> DeleteAsync(int id)
+        //{
+        //    var msg = await _context.PrivateMessages.FindAsync(id);
+        //    if (msg == null) return false;
+
+        //    _context.PrivateMessages.Remove(msg);
+        //    await _context.SaveChangesAsync();
+        //    return true;
+        //}
